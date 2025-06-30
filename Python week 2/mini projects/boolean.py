@@ -55,3 +55,12 @@ elif a < b:
     print(f"{a} is less than {b}.")
 else:
     print(f"{a} is equal to {b}.")
+
+# Teenager checker 
+
+age = int(input("Enter your age: "))
+# if 13 <= age <= 19:
+if age >= 13 and age <= 19:
+    print("You are a teenager.")
+else:
+    print("You are not a teenager.")

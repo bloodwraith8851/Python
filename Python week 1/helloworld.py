@@ -6,3 +6,4 @@ print("lets learn python") # we can use comments to explain code
 print("my age is",15) # we can use commas to separate strings and variables
 print("hello"+"world") # we can also concatenate 
 print('hello') # we can use single or double quotes
+print('test')

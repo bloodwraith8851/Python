@@ -72,3 +72,5 @@ for i in range(3): # outer loop (i) matlab row by row ja rahe hain
         # jab ek row complete ho jata hai toh result mein wo row add ho jata hai
 for row in result:
     print(row)
+
+print(f"\n{'='*30}")

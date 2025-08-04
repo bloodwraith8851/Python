@@ -156,3 +156,129 @@ qwerty.update(email = "iKu9a@example.com", phone = "1234567890")
 
 
 print("Updated dictionary:", qwerty)
+
+# Removing key-value pairs
+
+del qwerty["city"]  # Removing a key-value pair
+qwerty.pop("grade")  # Removing a key-value pair
+iteam = qwerty.popitem()  # Removing the last key-value pair
+# qwerty.clear()  # Removing all key-value pairs
+print ("Removed item:", iteam)
+# print("Updated dictionary:", qwerty)
+print("Dictionary after clearing:", qwerty)
+
+# dictionary methods
+
+nidhi = {
+    "name": "Nidhi",
+    "age": 17,
+    "city": "vadodara",
+    "hobby": "reading",
+    "subjects": ["Math", "Physics", "Chemistry"],
+    "grade": "-X"
+}
+
+# keys () - returns all keys in the dictionary
+print ("Keys:",nidhi.keys())
+print ("keys as list:", list(nidhi.keys()))
+
+# values () - returns all values in the dictionary
+print ("Values:",nidhi.values())
+print ("values as list:", list(nidhi.values()))
+
+# items() - returns key-value pairs as tuples
+print("Items:", nidhi.items())
+print("Items as list:", list(nidhi.items()))
+
+# len() - returns the number of key-value pairs in the dictionary
+print("Number of key-value pairs:", len(nidhi))
+
+# in operator - checks if a key exists in the dictionary
+
+print ("name" in nidhi)
+print("age" in nidhi)
+print("country" in nidhi)  # False, as 'country' is not a key in the dictionary
+
+# copy() - creates a shallow copy of the dictionary
+nidhi_copy = nidhi.copy()
+print("Copied dictionary:", nidhi_copy)
+
+# advance dictionary methods
+
+# setdefault() - returns the value of a key if it exists, otherwise sets it to a default value
+
+nidhi.setdefault("country", "India")  # Sets 'country' to 'India' if it doesn't exist
+print("After setdefault:", nidhi)
+
+nidhi.setdefault("grade", "A") # Sets 'grade' to 'A' if it doesn't exist
+print("After setdefault for existing key:", nidhi)
+
+# fromkeys() - creates a new dictionary with specified keys and a default value
+
+subjects = ["Math", "Physics", "Chemistry"]
+scores = dict.fromkeys(subjects, 0)  # Creates a dictionary with subjects as keys and 0 as default value
+scores["Math"] = 95  # Updating the score for Math
+scores["Physics"] = 90  # Updating the score for Physics
+scores["Chemistry"] = 85  # Updating the score for Chemistry    
+print("Scores dictionary from keys:", scores)
+
+# merging dictionaries (python 3.9+ feature)
+
+dict1 = {"a": 1, "b": 2}
+dict2 = {"c": 3, "d": 4}
+
+merged = dict1|dict2  # Merging dictionaries using the | operator
+print("Merged dictionary:", merged)
+
+# nested dictionary
+
+school ={
+    "students" : {
+        "Alice": {"age": 20, "grade": "A"},
+        "Bob": {"age": 22, "grade": "B"},
+        "Charlie": {"age": 21, "grade": "C"}
+    },
+    "teachers": {
+        "Mr. Smith": {"subject": "Math", "experience": 5},
+        "Ms. Johnson": {"subject": "Physics", "experience": 3}
+    }
+}
+
+print ("School dictionary:", school)
+# Accessing nested dictionary values
+print(school["students"]["Alice"]["grade"])  # Output: A
+print(school["teachers"]["Mr. Smith"]["subject"])  # Output: Math
+
+# error handling with dictionaries
+
+def safe_get_grade(students,name):
+    """Safely get the grade of a student by name."""
+    try:
+        return students[name]["grade"]
+    except KeyError:
+        return "Student not found"
+    except TypeError:
+        return "Invalid data structure"
+    
+students = {
+    "Alice": {"age": 20, "grade": "A"},
+    "Bob": {"age": 22, "grade": "B"},
+    "pagal": ["not a dict"],
+    "Charlie": {"age": 21, "grade": "C"}
+}
+
+print(safe_get_grade(students, "Alice"))  # Output: A
+print(safe_get_grade(students, "David")) # Output: Student not found
+print(safe_get_grade(students, "pagal"))  # Output: Invalid data structure
+
+grades = {
+    "Math": 85,
+    "Science": 90,
+    "English": 88
+}
+
+iteams = grades.items()  # Getting key-value pairs as tuples
+sorted1 = sorted(grades.items())  # Sorting by values in descending order
+
+print ("Grades items:", iteams)
+print("Sorted grades:", sorted1)

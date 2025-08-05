@@ -129,5 +129,86 @@ def find_extremes(grades):
         print("you only have one subject, no comparison available.") # Display message if only one subject is present
 
 
+def delete_grade(grades):
+    """Delete a grade for a subject."""
+    if not grades: # Check if grades dictionary is empty
+        print("\nNo grades available to delete.") # Display message if no grades are available
+        return # Display header
+    
+    print("\nCurrent Grades:") # Display header
+    for i, subject in enumerate(grades.keys(),1): # Display current grades
+        print(f"{i}. {subject} ({grades[subject]:.1f})") # Display subject and grade
+    subject = input("Enter the subject name to delete: ").strip().title() # Get user input for subject
+    if subject in grades:
+        grade = grades.pop(subject) # Remove the subject from the dictionary
+        print(f"Deleted {subject} (Grade: {grade:.1f})") # Display message for successful deletion
+    else:
+        print(f"{subject} not found in grades.") # Display message if subject not found
 
+def grade_distribution(grades):
+    """show grade distribution by letter grade."""
+    if not grades: # Check if grades dictionary is empty
+        print("\nNo grades available for distribution.") # Display message if no grades are available
+        return
+    
+    distribution = {}
+    for grade in grades.values(): # Iterate through grades
+        letter = get_letter_grade(grade) # Get letter grade
+        distribution[letter] = distribution.get(letter, 0) + 1 # Count occurrences of each letter grade
+    
+    print (f"\nGrade Distribution") # Display header
+    print(f"{'='*25}") # Display header
+    for letter in ["A+", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "F"]:
+        if letter in distribution:
+            count = distribution[letter] # Get count for each letter grade
+            percentage = (count / len(grades)) * 100 # Calculate percentage
+            bar = "||" * (count // 3) # Create bar for visual representation
+            print(f"{letter:<3}: {bar} {count} ({percentage:.1f}%)") # Display letter grade, bar, count, and percentage
 
+def create_grade_tracker():
+    """Main function to create and manage the grade tracker."""
+    grades = {}  # Initialize an empty dictionary to store grades
+
+    print("\nWelcome to the Personal Grade Tracker!")  # Welcome message
+    print("Track your academic performance easily across subjects.\n")  # Description of the tool
+
+    while True:  # Main loop for the grade tracker
+        print(f"\n{'='*40}")  # Display header
+        print("Personal Grade Tracker Menu")  # Display menu header
+        print(f"{'='*40}")
+        print("1. Add or Update Grade")  # Option to add or update grades
+        print("2. View Grades")  # Option to view all grades
+        print("3. Calculate Average Grade")  # Option to calculate average grade
+        print("4. Find Highest and Lowest Grades")  # Option to find highest and lowest grades
+        print("5. Grade Distribution")  # Option to view grade distribution
+        print("6. Delete a Grade")  # Option to delete a grade
+        print("7. Exit")
+        print(f"{'='*40}")
+
+        choice = input("Choose an option (1-7): ").strip()  # Get user input for menu choice
+        if choice == '1':
+            add_grade(grades)  # Call function to add or update a grade for a subject
+        elif choice == '2':
+            view_grades(grades)  # Call function to view all grades
+        elif choice == '3':
+            calculate_average(grades)  # Call function to calculate average grade
+        elif choice == '4':
+            find_extremes(grades)  # Call function to find highest and lowest grades
+        elif choice == '5':
+            grade_distribution(grades)  # Call function to show grade distribution
+        elif choice == '6':
+            delete_grade(grades)  # Call function to delete a grade
+        elif choice == '7':
+            print("Keep up the great work with your studies!")  # Exit message
+            print("Remember, every step counts towards your success!")  # Motivational message
+            break
+        else:
+            print("Invalid choice. Please select a valid option (1-7).")
+
+        input("\nPress Enter to continue...")  # Wait for user input before continuing
+
+if __name__ == "__main__":
+    create_grade_tracker()  # Start the grade tracker application
+# This code provides a simple personal grade tracker that allows users to manage their academic performance across multiple subjects.
+# It includes features for adding/updating grades, viewing grades, calculating averages, finding extremes, and displaying grade distribution.
+# The user interface is text-based and designed for easy interaction.
